@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+#tmp bug fix printscreens, docs, code snippets & other tmp files
+tmp_files/

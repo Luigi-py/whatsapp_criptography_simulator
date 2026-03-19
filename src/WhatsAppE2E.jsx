@@ -1052,7 +1052,7 @@ function Phase3({ state, dispatch }) {
             fontSize: ds.__baseFontSize + 1, color: "var(--color-text-secondary)",
             marginBottom: 12, display: "flex", alignItems: "center", gap: 12,
             background: "var(--color-background-secondary)", padding: "12px 16px",
-            borderRadius: "var(--border-radius-md)"
+            borderRadius: "var(--border-radius-md)", flexWrap: "wrap"
           }}>
             <span style={{ fontWeight: 700 }}>
               Enviando como:{" "}
@@ -1068,10 +1068,10 @@ function Phase3({ state, dispatch }) {
               style={{
                 fontSize: ds.__labelFontSize, padding: "6px 14px", fontWeight: 700,
                 background: "var(--color-background-warning)", color: "var(--color-text-warning)",
-                border: "2px solid var(--color-text-warning)"
+                border: "2px solid var(--color-text-warning)", whiteSpace: "nowrap", flexShrink: 0
               }}
             >
-              Trocar Remetente ⟳
+              Trocar Remetente {"\u27F3"}
             </button>
           </div>
 
@@ -1152,7 +1152,7 @@ function Phase3({ state, dispatch }) {
               placeholder={`${currentSender} digita...`}
               style={{ flex: 1, fontSize: ds.__baseFontSize + 1, padding: "12px 16px" }}
             />
-            <Btn onClick={send} disabled={!text.trim()} primary>
+            <Btn onClick={send} disabled={!text.trim()} primary style={{ flexShrink: 0 }}>
               Enviar
             </Btn>
           </div>
@@ -1727,14 +1727,14 @@ export default function WhatsAppE2E() {
         Simulação completa do <strong>Signal Protocol</strong> (usado no WhatsApp): <strong>X3DH</strong> + <strong>Double Ratchet</strong>.
       </Callout>
 
-      <div style={{ display: "flex", gap: 8, marginBottom: 22 }}>
+      <div style={{ display: "flex", gap: 8, marginBottom: 22, flexWrap: "wrap" }}>
         {PHASES.map((name, i) => (
           <button
             key={i}
             onClick={() => canPhase[i] && dispatch({ type: "SET_PHASE", phase: i })}
             disabled={!canPhase[i]}
             style={{
-              flex: 1, fontSize: ds.__e2ePhaseTabSize + 2, padding: "10px 8px",
+              flex: "1 1 120px", fontSize: ds.__e2ePhaseTabSize + 2, padding: "10px 8px", whiteSpace: "nowrap",
               background: state.phase === i ? "var(--color-background-info)" : "transparent",
               color: state.phase === i ? "var(--color-text-info)" : "var(--color-text-tertiary)",
               border: state.phase === i

@@ -161,7 +161,7 @@ export function LogicProof({ steps, title }) {
         {steps.map((step, i) => (
           <div key={i} style={{
             display: "flex", alignItems: "baseline", gap: 12,
-            padding: "6px 10px",
+            padding: "6px 10px", overflowX: "auto",
             background: i % 2 === 0 ? "var(--color-background-primary)" : "transparent",
             borderRadius: 6,
           }}>
@@ -173,7 +173,7 @@ export function LogicProof({ steps, title }) {
             </span>
             <span style={{
               fontFamily: "var(--font-mono)", fontSize: 14, fontWeight: 700,
-              color: "var(--color-text-primary)",
+              color: "var(--color-text-primary)", whiteSpace: "nowrap",
             }}>
               {step.formula}
             </span>
@@ -184,7 +184,7 @@ export function LogicProof({ steps, title }) {
                   fontFamily: "var(--font-mono)", fontSize: 14, fontWeight: 800,
                   color: "var(--color-text-info)",
                   background: "var(--color-background-info)",
-                  padding: "2px 8px", borderRadius: 4,
+                  padding: "2px 8px", borderRadius: 4, whiteSpace: "nowrap",
                 }}>
                   {step.result}
                 </span>
@@ -193,7 +193,7 @@ export function LogicProof({ steps, title }) {
             {step.explanation && (
               <span style={{
                 fontSize: 13, color: "var(--color-text-secondary)",
-                fontWeight: 600, marginLeft: "auto", fontStyle: "italic",
+                fontWeight: 600, marginLeft: "auto", fontStyle: "italic", whiteSpace: "nowrap",
               }}>
                 {step.explanation}
               </span>
@@ -219,7 +219,7 @@ export function FormalNotation({ formula, label }) {
   return (
     <div style={{
       display: "inline-flex", alignItems: "baseline", gap: 4,
-      flexWrap: "wrap",
+      flexWrap: "wrap", overflowX: "auto", maxWidth: "100%",
     }}>
       {label && (
         <span style={{
@@ -235,6 +235,7 @@ export function FormalNotation({ formula, label }) {
         background: "var(--color-background-secondary)",
         padding: "4px 10px", borderRadius: 6,
         border: "1.5px solid var(--color-border-tertiary)",
+        overflowWrap: "normal", whiteSpace: "nowrap",
       }}>
         {parts.map((part, i) => {
           const colorKey = CONNECTIVE_COLORS[part];

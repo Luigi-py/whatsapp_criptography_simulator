@@ -89,7 +89,7 @@ function LogicTab() {
             return (
               <div key={i}>
                 <div style={{
-                  display: "flex", alignItems: "center", gap: 10,
+                  display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap",
                   padding: "10px 14px", borderRadius: "var(--border-radius-md)",
                   background: p.answer === null ? "var(--color-background-secondary)"
                     : correct ? "var(--color-background-success)"
@@ -105,7 +105,7 @@ function LogicTab() {
                     {p.text}
                   </span>
                   <button onClick={() => handlePropClick(i, "prop")} style={{
-                    padding: "4px 12px", fontSize: 13, fontWeight: 700,
+                    padding: "4px 12px", fontSize: 13, fontWeight: 700, whiteSpace: "nowrap", flexShrink: 0,
                     background: p.answer === "prop" ? "var(--color-text-success)" : "var(--color-background-success)",
                     color: p.answer === "prop" ? "#fff" : "var(--color-text-success)",
                     border: "1.5px solid var(--color-text-success)",
@@ -113,7 +113,7 @@ function LogicTab() {
                     Proposição
                   </button>
                   <button onClick={() => handlePropClick(i, "not-prop")} style={{
-                    padding: "4px 12px", fontSize: 13, fontWeight: 700,
+                    padding: "4px 12px", fontSize: 13, fontWeight: 700, whiteSpace: "nowrap", flexShrink: 0,
                     background: p.answer === "not-prop" ? "var(--color-text-danger)" : "var(--color-background-danger)",
                     color: p.answer === "not-prop" ? "#fff" : "var(--color-text-danger)",
                     border: "1.5px solid var(--color-text-danger)",
@@ -313,7 +313,7 @@ function CaesarTab() {
 
       {/* Shift control */}
       <div style={{
-        display: "flex", alignItems: "center", gap: 16, marginBottom: 24,
+        display: "flex", alignItems: "center", gap: 16, marginBottom: 24, flexWrap: "wrap",
         background: "var(--color-background-secondary)", padding: "18px 22px",
         borderRadius: "var(--border-radius-lg)"
       }}>
@@ -321,7 +321,7 @@ function CaesarTab() {
           Deslocamento
         </label>
         <input type="range" min="1" max="25" value={shift} onChange={(e) => setShift(+e.target.value)}
-          style={{ flex: 1, height: 8 }} />
+          style={{ flex: "1 1 120px", height: 8, minWidth: 80 }} />
         <span style={{
           fontWeight: 800, minWidth: 52, fontFamily: "var(--font-mono)", fontSize: ds.__monoFontSize + 8,
           color: "var(--color-text-info)", textAlign: "center",
@@ -383,7 +383,7 @@ function CaesarTab() {
       {/* ── Two-bar alphabet with smooth sliding animation ── */}
       <div style={{
         background: "var(--color-background-secondary)", borderRadius: "var(--border-radius-lg)",
-        padding: "22px 20px", overflow: "hidden"
+        padding: "22px 20px", overflowX: "auto"
       }}>
         {/* Original alphabet label + bar */}
         <div style={{
@@ -399,7 +399,7 @@ function CaesarTab() {
         }}>
           {alphabet.split("").map((c, i) => (
             <span key={i} style={{
-              width: cellW, textAlign: "center", fontSize: ds.__caesarAlphabetSize + 2,
+              width: cellW, minWidth: cellW, flexShrink: 0, textAlign: "center", fontSize: ds.__caesarAlphabetSize + 2,
               color: text.includes(c) ? "var(--color-text-info)" : "var(--color-text-tertiary)",
               fontWeight: text.includes(c) ? 800 : 500,
               transition: "all 0.3s"
@@ -453,7 +453,7 @@ function CaesarTab() {
 
         {/* Legend */}
         <div style={{
-          display: "flex", gap: 18, marginTop: 10, paddingLeft: 4,
+          display: "flex", gap: 18, marginTop: 10, paddingLeft: 4, flexWrap: "wrap",
           fontSize: ds.__smallFontSize + 1, color: "var(--color-text-secondary)", alignItems: "center"
         }}>
           <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
@@ -641,7 +641,9 @@ function XorTab() {
                   display: "grid",
                   gridTemplateColumns: "90px repeat(8, 34px) 2px 50px 44px 36px",
                   gap: "6px",
-                  alignItems: "center"
+                  alignItems: "center",
+                  minWidth: 500,
+                  overflowWrap: "normal", whiteSpace: "nowrap"
                 }}>
 
                   {/* ── Header row ── */}
@@ -773,7 +775,8 @@ function XorTab() {
                 {/* Legend */}
                 <div style={{
                   marginTop: 12, fontSize: ds.__xorBitSize + 1, color: "var(--color-text-secondary)",
-                  display: "flex", gap: 20, alignItems: "center", paddingLeft: 90, flexWrap: "wrap"
+                  display: "flex", gap: 20, alignItems: "center", paddingLeft: 0, flexWrap: "wrap",
+                  whiteSpace: "normal"
                 }}>
                   <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
                     <span style={{
@@ -1032,6 +1035,9 @@ export default function CryptoSimulator() {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
   const ds = useDevStyles("__titleFontSize", "__baseFontSize", "__smallFontSize", "__labelFontSize");
+  const [showMobilePopup, setShowMobilePopup] = useState(() => {
+    return window.innerWidth <= 768 && window.innerHeight > window.innerWidth;
+  });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -1042,6 +1048,39 @@ export default function CryptoSimulator() {
 
   return (
     <div style={{ maxWidth: 940, margin: "0 auto" }}>
+      {showMobilePopup && (
+        <div style={{
+          position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
+          background: "rgba(0,0,0,0.6)", zIndex: 10000,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          padding: 20,
+        }}>
+          <div style={{
+            background: "var(--color-background-primary)",
+            borderRadius: "var(--border-radius-lg)",
+            padding: "28px 24px",
+            maxWidth: 340, width: "100%",
+            textAlign: "center",
+            position: "relative",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
+          }}>
+            <button onClick={() => setShowMobilePopup(false)} style={{
+              position: "absolute", top: 10, right: 10,
+              background: "transparent", border: "none",
+              fontSize: 22, cursor: "pointer", color: "var(--color-text-tertiary)",
+              padding: "4px 8px", fontWeight: 700, lineHeight: 1,
+            }}>
+              {"\u00D7"}
+            </button>
+            <p style={{
+              fontSize: 16, color: "var(--color-text-primary)",
+              fontWeight: 600, lineHeight: 1.6, margin: 0,
+            }}>
+              Para uma melhor experiência mobile, vire seu smartphone para horizontal ;)
+            </p>
+          </div>
+        </div>
+      )}
       <div style={{
         display: "flex", alignItems: "center", gap: 12, marginBottom: 28, flexWrap: "wrap"
       }}>
@@ -1074,7 +1113,7 @@ export default function CryptoSimulator() {
         {TABS.map((t, i) => (
           <button key={i} onClick={() => setActiveTab(i)}
             style={{
-              flex: 1, padding: "12px 8px", fontSize: ds.__labelFontSize + 2,
+              flex: "1 1 120px", padding: "12px 8px", fontSize: ds.__labelFontSize + 2, whiteSpace: "nowrap",
               background: activeTab === i ? "var(--color-background-info)" : "transparent",
               color: activeTab === i ? "var(--color-text-info)" : "var(--color-text-tertiary)",
               border: activeTab === i ? "2px solid var(--color-text-info)" : "2px solid var(--color-border-tertiary)",
