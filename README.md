@@ -24,17 +24,17 @@ cd "~./your_local_git_clone/simulador"
 
 npm run dev
 
-Depois abra http://localhost:5173 no navegador.
+Then open http://localhost:5173 on your browser.
 
 ## How to kill ghost server on port 5173 (Windows)
 
-Se a porta 5173 ainda estiver ocupada mesmo sem terminal aberto, execute no terminal:
+IF the 5173 port still be ocupied besides any terminal as open, execute on terminal:
 
 ```bash
 netstat -ano | grep :5173
 ```
 
-Isso mostra o PID do processo. Depois, mate-o com:
+This show the PID process. Then, kill that with:
 
 ```bash
 taskkill //F //PID <numero_do_PID>
