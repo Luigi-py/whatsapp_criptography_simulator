@@ -20,13 +20,13 @@ If you are developing a production application, we recommend using TypeScript wi
 
 ## How to run the local server?
 
-cd "D:/1.ESTUDOS/BIA UFG - Bacharelado Inteligência Artificial/1º Ano/1º Semestre (1º Período)/Lógica Matemática/Prática/Seminário 1/simulador"
+cd "~./your_local_git_clone/simulador"
 
 npm run dev
 
 Depois abra http://localhost:5173 no navegador.
 
-## Como matar um servidor fantasma na porta 5173 (Windows)
+## How to kill ghost server on port 5173 (Windows)
 
 Se a porta 5173 ainda estiver ocupada mesmo sem terminal aberto, execute no terminal:
 
