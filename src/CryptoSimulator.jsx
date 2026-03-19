@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import WhatsAppE2E from "./WhatsAppE2E";
 import { useDevStyles } from "./DevStylePanel";
-import { TruthTable, LogicProof, FormalNotation, LogicCallout, BinaryConverter } from "./LogicPanels";
+import { TruthTable, LogicProof, FormalNotation, LogicCallout, BinaryConverter, REFERENCE_URLS } from "./LogicPanels";
 
 const TABS = ["Lógica", "Cifra de César", "XOR ao vivo", "WhatsApp E2E"];
 
@@ -215,7 +215,7 @@ function LogicTab() {
                 <div style={{ fontSize: 13, fontWeight: 800, color: "var(--color-text-warning)", marginBottom: 4 }}>
                   PROPRIEDADE ESPECIAL
                 </div>
-                <FormalNotation formula="(p \u2295 k) \u2295 k = p" label="Auto-inversão" />
+                <FormalNotation formula="(p ⊕ k) ⊕ k = p" label="Auto-inversão" />
               </div>
             )}
           </div>
@@ -252,10 +252,10 @@ function LogicTab() {
         <LogicProof
           title="Prova por exaustão — todas as 4 combinações"
           steps={[
-            { formula: "p=0, k=0:", result: "0\u22950=0, 0\u22950=0 \u2713", explanation: "Mantém o 0" },
-            { formula: "p=0, k=1:", result: "0\u22951=1, 1\u22951=0 \u2713", explanation: "Inverte e volta" },
-            { formula: "p=1, k=0:", result: "1\u22950=1, 1\u22950=1 \u2713", explanation: "Mantém o 1" },
-            { formula: "p=1, k=1:", result: "1\u22951=0, 0\u22951=1 \u2713", explanation: "Inverte e volta" },
+            { formula: "p=0, k=0:", result: "0⊕0=0, 0⊕0=0 \u2713", explanation: "Mantém o 0" },
+            { formula: "p=0, k=1:", result: "0⊕1=1, 1⊕1=0 \u2713", explanation: "Inverte e volta" },
+            { formula: "p=1, k=0:", result: "1⊕0=1, 1⊕0=1 \u2713", explanation: "Mantém o 1" },
+            { formula: "p=1, k=1:", result: "1⊕1=0, 0⊕1=1 \u2713", explanation: "Inverte e volta" },
           ]}
         />
 
@@ -855,9 +855,9 @@ function XorTab() {
             <LogicProof
               title="Prova formal de reversibilidade"
               steps={[
-                { formula: "c = p \u2295 k", result: `${chars[0]?.code || "p"} \u2295 ${key} = ${chars[0]?.encrypted || "c"}`, explanation: "Criptografia" },
-                { formula: "resultado = c \u2295 k = (p \u2295 k) \u2295 k", result: `${chars[0]?.encrypted || "c"} \u2295 ${key}`, explanation: "Descriptografia" },
-                { formula: "(p \u2295 k) \u2295 k = p \u2295 (k \u2295 k) = p \u2295 0 = p", result: `${chars[0]?.code || "p"}`, explanation: "Assoc. + Auto-inversão" },
+                { formula: "c = p ⊕ k", result: `${chars[0]?.code || "p"} ⊕ ${key} = ${chars[0]?.encrypted || "c"}`, explanation: "Criptografia" },
+                { formula: "resultado = c ⊕ k = (p ⊕ k) ⊕ k", result: `${chars[0]?.encrypted || "c"} ⊕ ${key}`, explanation: "Descriptografia" },
+                { formula: "(p ⊕ k) ⊕ k = p ⊕ (k ⊕ k) = p ⊕ 0 = p", result: `${chars[0]?.code || "p"}`, explanation: "Assoc. + Auto-inversão" },
               ]}
             />
           </div>
@@ -873,8 +873,8 @@ function XorTab() {
               TAUTOLOGIA: (p &#x2295; k) &#x2295; k &#x2261; p para TODOS os valores de p e k
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 13, color: "var(--color-text-secondary)", fontWeight: 600 }}>
-              <span>Auto-inversão: k &#x2295; k = 0 <span style={{ color: "var(--color-text-tertiary)", fontStyle: "italic" }}>(LEVADA, A. Lógica Matemática, 2025, Sec. 4.3)</span></span>
-              <span>Associatividade: (a &#x2295; b) &#x2295; c = a &#x2295; (b &#x2295; c) <span style={{ color: "var(--color-text-tertiary)", fontStyle: "italic" }}>(LEVADA, A. Lógica Matemática, 2025)</span></span>
+              <span>Auto-inversão: k &#x2295; k = 0 <a href={REFERENCE_URLS.LEVADA} target="_blank" rel="noopener noreferrer" className="ref-link" style={{ color: "var(--color-text-tertiary)", fontStyle: "italic" }}>(LEVADA, A. Lógica Matemática, 2025, Sec. 4.3)</a></span>
+              <span>Associatividade: (a &#x2295; b) &#x2295; c = a &#x2295; (b &#x2295; c) <a href={REFERENCE_URLS.LEVADA} target="_blank" rel="noopener noreferrer" className="ref-link" style={{ color: "var(--color-text-tertiary)", fontStyle: "italic" }}>(LEVADA, A. Lógica Matemática, 2025)</a></span>
               <span>Elemento neutro: p &#x2295; 0 = p</span>
             </div>
           </div>

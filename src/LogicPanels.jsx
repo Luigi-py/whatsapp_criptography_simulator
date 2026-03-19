@@ -255,6 +255,36 @@ export function FormalNotation({ formula, label }) {
   );
 }
 
+/* ── Reference Link Helper ───────────────────────────── */
+
+const REFERENCE_URLS = {
+  LEVADA: "https://www.researchgate.net/profile/Alexandre-Levada/publication/389846715_Logica_Matematica/links/67d71782e62c604a0ddbd9c6/Logica-Matematica.pdf",
+  HUTH: "http://staff.ustc.edu.cn/~huangwc/book/LogicInCS.pdf",
+};
+
+export { REFERENCE_URLS };
+
+export function linkifySource(source) {
+  const parts = source.split(/;\s*/);
+  return parts.map((part, i) => {
+    const trimmed = part.trim();
+    let url = null;
+    if (/^LEVADA/i.test(trimmed)) url = REFERENCE_URLS.LEVADA;
+    else if (/^HUTH/i.test(trimmed)) url = REFERENCE_URLS.HUTH;
+
+    return (
+      <span key={i}>
+        {i > 0 && "; "}
+        {url ? (
+          <a href={url} target="_blank" rel="noopener noreferrer" className="ref-link">
+            {trimmed}
+          </a>
+        ) : trimmed}
+      </span>
+    );
+  });
+}
+
 /* ── LogicCallout Component ──────────────────────────── */
 
 export function LogicCallout({ children, source, collapsed: initialCollapsed = true, type = "info" }) {
@@ -300,7 +330,7 @@ export function LogicCallout({ children, source, collapsed: initialCollapsed = t
               borderTop: "1px solid var(--color-border-info)",
               paddingTop: 8,
             }}>
-              Fonte: {source}
+              Fonte: {linkifySource(source)}
             </div>
           )}
         </div>
