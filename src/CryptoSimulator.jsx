@@ -385,6 +385,7 @@ function CaesarTab() {
         background: "var(--color-background-secondary)", borderRadius: "var(--border-radius-lg)",
         padding: "22px 20px", overflowX: "auto"
       }}>
+       <div style={{ minWidth: "fit-content" }}>
         {/* Original alphabet label + bar */}
         <div style={{
           fontSize: ds.__smallFontSize + 1, fontWeight: 800, color: "var(--color-text-info)",
@@ -418,7 +419,8 @@ function CaesarTab() {
           overflow: "hidden",
           borderRadius: "var(--border-radius-md)",
           background: "var(--color-background-secondary)",
-          padding: "10px 6px"
+          padding: "10px 6px",
+          width: `${26 * cellW + 25 * gap}px`
         }}>
           <div style={{
             display: "flex", gap: gap, fontFamily: "var(--font-mono)",
@@ -472,6 +474,7 @@ function CaesarTab() {
             <strong style={{ color: "var(--color-text-danger)" }}>Posição original</strong> (antes de cifrar)
           </span>
         </div>
+       </div>
       </div>
 
       <div style={{
@@ -1072,12 +1075,27 @@ export default function CryptoSimulator() {
             }}>
               {"\u00D7"}
             </button>
+            <div style={{ marginBottom: 16 }}>
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style={{ display: "block", margin: "0 auto" }}>
+                <rect x="14" y="8" width="36" height="48" rx="6" stroke="var(--color-text-info)" strokeWidth="3" fill="none" />
+                <path d="M50 36 L58 32 L50 28" stroke="var(--color-text-warning)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                <path d="M50 32 Q56 32 56 38 Q56 52 42 52 L22 52 Q8 52 8 38 L8 32" stroke="var(--color-text-warning)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+              </svg>
+            </div>
             <p style={{
               fontSize: 16, color: "var(--color-text-primary)",
               fontWeight: 600, lineHeight: 1.6, margin: 0,
             }}>
-              Para uma melhor experiência mobile, vire seu smartphone para horizontal ;)
+              Para melhor experiencia, gire o celular para <strong style={{ color: "var(--color-text-info)" }}>modo paisagem</strong>
             </p>
+            <button onClick={() => setShowMobilePopup(false)} style={{
+              marginTop: 16, padding: "10px 24px",
+              background: "var(--color-text-info)", color: "#fff",
+              border: "none", borderRadius: "var(--border-radius-md)",
+              fontSize: 15, fontWeight: 700, cursor: "pointer",
+            }}>
+              Entendi
+            </button>
           </div>
         </div>
       )}

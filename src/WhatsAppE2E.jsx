@@ -1047,7 +1047,7 @@ function Phase3({ state, dispatch }) {
 
       <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
         {/* Chat area */}
-        <div style={{ flex: "3 1 280px", display: "flex", flexDirection: "column" }}>
+        <div style={{ flex: "3 1 280px", minWidth: 0, display: "flex", flexDirection: "column" }}>
           <div style={{
             fontSize: ds.__baseFontSize + 1, color: "var(--color-text-secondary)",
             marginBottom: 12, display: "flex", alignItems: "center", gap: 12,
@@ -1068,7 +1068,7 @@ function Phase3({ state, dispatch }) {
               style={{
                 fontSize: ds.__labelFontSize, padding: "6px 14px", fontWeight: 700,
                 background: "var(--color-background-warning)", color: "var(--color-text-warning)",
-                border: "2px solid var(--color-text-warning)", whiteSpace: "nowrap", flexShrink: 0
+                border: "2px solid var(--color-text-warning)"
               }}
             >
               Trocar Remetente {"\u27F3"}
@@ -1150,7 +1150,7 @@ function Phase3({ state, dispatch }) {
               onChange={(e) => setText(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && send()}
               placeholder={`${currentSender} digita...`}
-              style={{ flex: 1, fontSize: ds.__baseFontSize + 1, padding: "12px 16px" }}
+              style={{ flex: 1, minWidth: 0, fontSize: ds.__baseFontSize + 1, padding: "12px 16px" }}
             />
             <Btn onClick={send} disabled={!text.trim()} primary style={{ flexShrink: 0 }}>
               Enviar
