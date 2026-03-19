@@ -1,0 +1,383 @@
+:root {
+  /* Font families */
+  --font-mono: ui-monospace, 'Cascadia Code', 'Fira Code', Consolas, monospace;
+
+  /* Border radius */
+  --border-radius-md: 10px;
+  --border-radius-lg: 14px;
+
+  /* ──── WhatsApp-Inspired Light Theme ──── */
+  --color-text-primary: #111b21;
+  --color-text-secondary: #3b4a54;
+  --color-text-tertiary: #54656f;
+
+  --color-text-info: #008069;
+  --color-text-danger: #cf1322;
+  --color-text-success: #00875a;
+  --color-text-warning: #b45309;
+
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f0f2f5;
+  --color-background-info: #e2f5f0;
+  --color-background-danger: #fff0f0;
+  --color-background-success: #e2f8ef;
+  --color-background-warning: #fff7e6;
+
+  --color-border-secondary: #d1d7db;
+  --color-border-tertiary: #e2e8ec;
+  --color-border-info: #80c0b0;
+
+  /* Alice & Bob */
+  --color-text-alice: #be185d;
+  --color-background-alice: #fce7f3;
+  --color-text-bob: #1d4ed8;
+  --color-background-bob: #dbeafe;
+
+  /* Chat bubbles */
+  --color-background-chat-sent: #d9fdd3;
+  --color-background-chat-received: #ffffff;
+  --color-background-ratchet-event: #fef3c7;
+
+  color-scheme: light;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background: var(--color-background-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[data-theme="dark"] {
+  --color-text-primary: #e9edef;
+  --color-text-secondary: #c1cdd4;
+  --color-text-tertiary: #8b9da7;
+
+  --color-text-info: #25d8a7;
+  --color-text-danger: #ff7875;
+  --color-text-success: #36d399;
+  --color-text-warning: #fbbf24;
+
+  --color-background-primary: #111b21;
+  --color-background-secondary: #1f2c34;
+  --color-background-info: rgba(37, 216, 167, 0.14);
+  --color-background-danger: rgba(255, 120, 117, 0.14);
+  --color-background-success: rgba(54, 211, 153, 0.14);
+  --color-background-warning: rgba(251, 191, 36, 0.14);
+
+  --color-border-secondary: #2e3d46;
+  --color-border-tertiary: #263640;
+  --color-border-info: rgba(37, 216, 167, 0.35);
+
+  /* Alice & Bob */
+  --color-text-alice: #f472b6;
+  --color-background-alice: rgba(244, 114, 182, 0.14);
+  --color-text-bob: #60a5fa;
+  --color-background-bob: rgba(96, 165, 250, 0.14);
+
+  /* Chat */
+  --color-background-chat-sent: #005c4b;
+  --color-background-chat-received: #1f2c34;
+  --color-background-ratchet-event: rgba(251, 191, 36, 0.16);
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 32px 24px;
+  min-height: 100vh;
+  background: var(--color-background-secondary);
+  overflow-x: hidden;
+}
+
+#root {
+  max-width: 980px;
+  margin: 0 auto;
+  background: var(--color-background-primary);
+  border-radius: 18px;
+  padding: 36px 32px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 8px 32px rgba(0, 0, 0, 0.06);
+  overflow-x: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+input[type="text"],
+input[type="number"],
+input:not([type]) {
+  padding: 12px 16px;
+  border: 2px solid var(--color-border-secondary);
+  border-radius: var(--border-radius-md);
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+  border-color: var(--color-text-info);
+  box-shadow: 0 0 0 3px var(--color-background-info);
+}
+
+button {
+  padding: 10px 18px;
+  border: 2px solid var(--color-border-secondary);
+  border-radius: var(--border-radius-md);
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  font-weight: 600;
+}
+
+button:hover {
+  background: var(--color-background-secondary);
+  border-color: var(--color-text-info);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+input[type="range"] {
+  accent-color: var(--color-text-info);
+  height: 8px;
+}
+
+select {
+  padding: 10px 14px;
+  border: 2px solid var(--color-border-secondary);
+  border-radius: var(--border-radius-md);
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  font-size: 15px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-secondary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-tertiary);
+}
+
+/* ── Logic Panels ── */
+.logic-panel {
+  transition: all 0.3s ease;
+}
+
+.logic-panel:hover {
+  border-color: var(--color-text-info) !important;
+}
+
+.truth-table {
+  border-collapse: collapse;
+  overflow: hidden;
+  border: 2px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-md);
+}
+
+.truth-table th,
+.truth-table td {
+  padding: 8px 16px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  border-bottom: 1.5px solid var(--color-border-tertiary);
+}
+
+.truth-table th {
+  background: var(--color-background-secondary);
+  border-bottom-width: 2.5px;
+  border-bottom-color: var(--color-border-secondary);
+}
+
+.proof-step {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.proof-step:hover {
+  background: var(--color-background-info) !important;
+}
+
+.formal-notation {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  background: var(--color-background-secondary);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1.5px solid var(--color-border-tertiary);
+  display: inline-block;
+}
+
+.proposition-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: var(--border-radius-md);
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.proposition-card.true {
+  background: var(--color-background-success);
+  border: 1.5px solid var(--color-text-success);
+}
+
+.proposition-card.false {
+  background: var(--color-background-danger);
+  border: 1.5px solid var(--color-text-danger);
+}
+
+.chain-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.chain-arrow .arrow {
+  color: var(--color-text-warning);
+  font-size: 18px;
+}
+
+/* ══════════════════════════════════════════════════════
+   Responsive — Tablet (≤ 768px)
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  body {
+    padding: 10px 6px;
+  }
+  #root {
+    padding: 18px 12px;
+    border-radius: 12px;
+  }
+
+  /* Shrink base font & inputs */
+  :root { font-size: 15px; }
+
+  input[type="text"],
+  input[type="number"],
+  input:not([type]) {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+  button {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+  select {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  /* Truth tables: allow horizontal scroll */
+  table {
+    font-size: 13px;
+  }
+  .truth-table th,
+  .truth-table td {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  /* Proof steps: stack on narrow */
+  .proof-step {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   Responsive — Mobile (≤ 480px)
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  body {
+    padding: 4px 2px;
+  }
+  #root {
+    padding: 12px 8px;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  :root { font-size: 14px; }
+
+  input[type="text"],
+  input[type="number"],
+  input:not([type]) {
+    font-size: 13px;
+    padding: 8px 10px;
+    letter-spacing: 0px;
+  }
+  button {
+    font-size: 12px;
+    padding: 6px 8px;
+    min-width: 0;
+  }
+  select {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+
+  .truth-table th,
+  .truth-table td {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+
+  .proof-step {
+    padding: 4px 6px;
+    gap: 4px;
+    font-size: 12px;
+  }
+
+  .proposition-card {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  .formal-notation {
+    padding: 3px 6px;
+    font-size: 12px;
+  }
+
+  .chain-arrow {
+    font-size: 12px;
+    gap: 4px;
+  }
+}
